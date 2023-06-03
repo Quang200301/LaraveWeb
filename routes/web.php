@@ -44,7 +44,15 @@ Route::get('/page.loai_sanpham/{type}',[
     'user'=>'PageController@getLoaiSp'
 ]);
 
+Route::get('/admin', [PageController::class, 'getIndexAdmin']);												
 
+Route::get('/admin-add-form', [PageController::class, 'getAdminAdd']);														
+
+Route::post('/admin-add-form', [PageController::class, 'postAdminAdd']);												
+
+Route::get('/admin-edit-form/{id}', [PageController::class, 'getAdminEdit']);													
+
+Route::post('/admin-edit',[PageController::class, 'postAdminEdit']);
 Route::get('/contact',[PageController::class,'getContact']);
 
 Route::get('/about',[PageController::class,'getAbout']);
@@ -53,6 +61,7 @@ Route::get('/type/{id}',[PageController::class,'getLoaiSp']);
 
 Route::get('detail/{id}',[PageController::class,'getDetail']);
 
+Route::post('/admin-delete/{id}', [PageController::class, 'postAdminDelete']);														
 
 
 
