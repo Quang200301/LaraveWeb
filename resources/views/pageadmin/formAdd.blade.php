@@ -49,30 +49,30 @@
             <div class="form-group">						
                 <img id="preview-image-before-upload" src="https://www.riobeauty.co.uk/images/product_image_not_found.gif" alt="preview image" style="max-height: 250px;">						
                 <script type="text/javascript">						
-                    $(document).ready(function(e) {						
-                        $('#inputImage').change(function() {						
-                            let reader = new FileReader();						
-                            reader.onload = (e) => {						
-                                $('#preview-image-before-upload').attr('src', e.target.result);						
-                            }						
-                            reader.readAsDataURL(this.files[0]);						
-                        });						
-                    });						
-                </script>						
-            </div>						
+                   $(document).ready(function(e) {						
+ $('#inputImage').change(function() {						
+            let reader = new FileReader();						
+reader.onload = (e) => {						
+$('#preview-image-before-upload').attr('src', e.target.result);						
+ }						
+ reader.readAsDataURL(this.files[0]);						
+ });						
+ });						
+</script>						
+ </div>						
                         
-            <div class="form-group">						
-                <label for='inputDescription'>Description</label>						
-                <textarea name="inputDescription" required></textarea>						
-                <script>						
-                    CKEDITOR.replace('inputDescription');						
-                </script>						
-            </div>						
+ <div class="form-group">						
+<label for='inputDescription'>Description</label>						
+ <textarea name="inputDescription" required></textarea>						
+ <script>						
+CKEDITOR.replace('inputDescription');						
+</script>						
+ </div>						
                         
-            <button type="submit" class="btn btn-primary">Submit</button>						
-        </form>						
-    </div>						
-    <div class="space50">&nbsp;</div>						
+ <button type="submit" class="btn btn-primary">Submit</button>						
+</form>						
+ </div>						
+ <div class="space50">&nbsp;</div>						
 </div>						
                         
 @endsection						

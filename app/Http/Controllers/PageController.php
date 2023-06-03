@@ -70,11 +70,16 @@ class PageController extends Controller
 
 
     }  
+
+
+    // CRUD---------------------------------------------------------------------------------------------------
     public function getIndexAdmin()														
-	{														
+	{
 	    $products = products::all();														
 	 return view('pageadmin.admin')->with(['products' => $products, 'sumSold' => count(bill_detail::all())]);														
-	 }		
+	 }	
+     
+     
     public function getAdminAdd(){
         return view('pageadmin.formAdd');
     }
@@ -105,6 +110,7 @@ class PageController extends Controller
     return $this->getIndexAdmin();							
     }							
          
+    // ---------------------------------------------------
     public function getAdminEdit($id)												
 	{												
 	 $product = products::find($id);												

@@ -3,12 +3,12 @@
 <div class="space50">&nbsp;</div>																
 <div class="container beta-relative">																
   <div class="container">																
-    <div class="col-12 col-md-6" style="background: red;color:white">Số sản phẩm: {{count($products)}}</div>																
-    <div class="col-12 col-md-6" style="background: blue;color:white">Đã bán: <br />																
+    <div class="col-12 col-md-6" style="background: rgb(112, 159, 159);color:white">Số sản phẩm: {{count($products)}}</div>																
+    <div class="col-12 col-md-6" style="background: rgb(251, 0, 255);color:white">Đã bán: <br />																
       <p>Tổng: {{$sumSold}}</p>																
-      <p>Hôm nay: 1</p>																
-      <p>Tháng này: 3</p>																
-      <p>Năm nay: 4</p>																
+      <p>Hôm nay: 15</p>																
+      <p>Tháng này: 30</p>																
+      <p>Năm nay: 400</p>																
     </div>																
   </div>																
   <div class="pull-left">																
