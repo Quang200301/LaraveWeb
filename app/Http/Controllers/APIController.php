@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\products;
+use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;				
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
+
+
 class APIController extends Controller
 {
     public function getProducts(){
@@ -70,5 +75,45 @@ class APIController extends Controller
 								
 	return response()->json(["message" => "ok"]);							
 	} else return response()->json(["message" => "false"]);							
-	}							
+	}	
+// -----------------------------------------------------------------------------------------
+
+	public function getdataFromAPI(){
+		$response = Http::get('https://645e542e8d08100293fcd90e.mockapi.io/sinhvien');
+		if($response->successful()){
+			$data = $response->json();
+			return view('apicrud.data',compact('data'));
+		}else{
+			// 
+		}return view('error');
+	}	
+	// -------------------------------------------
+		
+	// public function destroy($id){
+	
+	// 	$response = Http::delete('https://645e542e8d08100293fcd90e.mockapi.io/sinhvien' . $id);
+	// 	if ($response->successful()) {
+	// 		// Xóa thành công, thực hiện các hành động khác (nếu cần)
+	// 		return $this->getdataFromAPI();
+	// 	} else {
+	// 		// Xử lý lỗi khi không thể xóa
+	// 		return redirect()->back()->withErrors('Không thể xóa dữ liệu.');
+	// 	}
+    // // ...
+	// }
+	public function destroy(Request $request,$id)
+{
+    $response = Http::delete('https://645e542e8d08100293fcd90e.mockapi.io/sinhvien/' . $id);
+
+    if ($response->successful()) {
+        // Xóa thành công, thực hiện các hành động khác (nếu cần)
+        // return response()->json(['message' => 'Xóa thành công'], 200);
+		$request->session()->flash('delete_success', 'Xóa thành công');
+		return $this->getdataFromAPI();
+    } else {
+        // Xử lý lỗi khi không thể xóa
+        return response()->json(['message' => 'Không thể xóa dữ liệu'], $response->status());
+    }
+}
+	
 }

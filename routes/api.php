@@ -41,3 +41,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 	Route::put('/edit-product/{id}',[APIController::class,'editProduct']);									
 										
 	Route::post('/upload-image',[APIController::class,'uploadImage']);									
+	

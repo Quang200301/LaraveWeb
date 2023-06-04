@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 
-
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
@@ -64,5 +63,7 @@ Route::get('detail/{id}',[PageController::class,'getDetail']);
 Route::post('/admin-delete/{id}', [PageController::class, 'postAdminDelete']);														
 
 
+Route::get('/apicrud.data',[APIController::class,'getDataFromAPI']);
 
 
+Route::delete('/apicrud.data/{id}', [APIController::class, 'destroy'])->name('data.delete');
