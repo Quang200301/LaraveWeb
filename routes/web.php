@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Schema;
 // POST: gửi thông tin tới sever thông qua các biểu mẫu http (đăng kí chả hạn ...);
 Route::get('/signup',[SignupController::class ,'index']);
 
-Route::post('/signup',[SignupController::class ,'displayInfor']);
 
 
 
@@ -63,7 +62,13 @@ Route::get('detail/{id}',[PageController::class,'getDetail']);
 Route::post('/admin-delete/{id}', [PageController::class, 'postAdminDelete']);														
 
 
-Route::get('/apicrud.data',[APIController::class,'getDataFromAPI']);
+
+Route::get('/apicrud.data',[APIController::class, 'getDataFromAPI']);
 
 
-Route::delete('/apicrud.data/{id}', [APIController::class, 'destroy'])->name('data.delete');
+// xóa API data
+Route::delete('/apicrud.data/{id}', [APIController::class, 'destroy'])->name('apicrud.data.delete');
+
+// thêm API data
+Route::get('/apicrud.data', [APIController::class, 'getDataFromAPI'])->name('apicrud.data.getDataFromAPI');
+Route::post('/apicrud.data.add', [APIController::class, 'add']);

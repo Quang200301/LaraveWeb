@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
 
+
+
 class APIController extends Controller
 {
     public function getProducts(){
@@ -89,26 +91,17 @@ class APIController extends Controller
 	}	
 	// -------------------------------------------
 		
-	// public function destroy($id){
+
+
+// xóa data API----------------------------------------
 	
-	// 	$response = Http::delete('https://645e542e8d08100293fcd90e.mockapi.io/sinhvien' . $id);
-	// 	if ($response->successful()) {
-	// 		// Xóa thành công, thực hiện các hành động khác (nếu cần)
-	// 		return $this->getdataFromAPI();
-	// 	} else {
-	// 		// Xử lý lỗi khi không thể xóa
-	// 		return redirect()->back()->withErrors('Không thể xóa dữ liệu.');
-	// 	}
-    // // ...
-	// }
 	public function destroy(Request $request,$id)
-{
+	{
     $response = Http::delete('https://645e542e8d08100293fcd90e.mockapi.io/sinhvien/' . $id);
 
     if ($response->successful()) {
-        // Xóa thành công, thực hiện các hành động khác (nếu cần)
         // return response()->json(['message' => 'Xóa thành công'], 200);
-		$request->session()->flash('delete_success', 'Xóa thành công');
+		// $request->session()->flash('delete_success', 'Xóa thành công');
 		return $this->getdataFromAPI();
     } else {
         // Xử lý lỗi khi không thể xóa
@@ -116,4 +109,29 @@ class APIController extends Controller
     }
 }
 	
+
+public function add(Request $request)
+{
+    $data = new \stdClass();
+
+	$data->name= $request->name;
+	$data->price= $request->price;
+	$data->avatar= $request->avatar;
+
+
+    $response = Http::post('https://645e542e8d08100293fcd90e.mockapi.io/sinhvien', $data);
+
+    if ($response->successful()) {
+		// $request->session()->flash('add_success', 'Thêm thành công');
+        // Lưu flash message vào session
+        // $request->session()->flash('add_success', 'Thêm thành công');
+		
+        return $this->getdataFromAPI();
+    } else {
+        // Xử lý lỗi khi không thể thêm
+       
+		return response()->json(['message' => 'Không thể thêm dữ liệu'], (string) $response->status());
+
+    }
+}
 }
