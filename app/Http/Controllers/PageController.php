@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Cart;
+use  Illuminate\Support\Facades\Session;
 use App\Models\comments;
 use App\Models\products;
+use App\Models\Product;
 use App\Models\Product_type;
 use App\Models\slide;
 use Illuminate\Http\Request;
@@ -145,6 +147,27 @@ class PageController extends Controller
         $product->delete();
         return $this->getIndexAdmin();
     }
+ 				
+    	// --------------- CART -----------																					
+         public function getAddToCart(Request $req, $id)																					
+        {																					
+         if (Session::has('user')) {																					
+         if (Product::find($id)) {																					
+         $product = Product::find($id);																					
+        $oldCart = Session('cart') ? Session::get('cart') : null;																					
+       $cart = new Cart($oldCart);																					
+         $cart->add($product, $id);																					
+       $req->session()->put('cart', $cart);																					
+        return redirect()->back();																					
+        } else {																					
+     return '<script>alert("Không tìm thấy sản phẩm này.");window.location.assign("/");</script>';																					
+        }																					
+        } else {																					
+        return '<script>alert("Vui lòng đăng nhập để sử dụng chức năng này.");window.location.assign("/login");</script>';																					
+        }																					
+        }																					
+                                                                                            
+    
 
     
 }

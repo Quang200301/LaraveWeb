@@ -106,6 +106,13 @@ Schema::create('invoices', function (Blueprint $table) {
             $table->string('name');
             $table->timestamps();
         });
+        Schema::create('lazadas', function (Blueprint $table) {
+            $table->increments('id_laza');
+            $table->string('name');
+            $table->string('avatar');
+            $table->integer('price');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -125,6 +132,7 @@ Schema::create('invoices', function (Blueprint $table) {
         Schema::dropIfExists('room');
         Schema::dropIfExists('movies');
         Schema::dropIfExists('accounts');
+        Schema::dropIfExists('lazadas');
     }
 };
 ?>

@@ -7,7 +7,18 @@
 					<li><a href=""><i class="fa fa-home"></i> 90-92 Lê Thị Riêng, Bến Thành, Quận 1</a></li>					
 					<li><a href=""><i class="fa fa-phone"></i> 0163 296 7751</a></li>					
 				</ul>						
-			</div>							
+			</div>	
+			<div class="pull-right auto-width-right">														
+				<ul class="top-details menu-beta l-inline">														
+				@if(Session::has('user'))														
+				<li><a href="logout"><i class="fa fa-user"></i>{{Session('user')->name}}</a></li>														
+				@else														
+				<li><a href="register">Đăng kí</a></li>														
+				<li><a href="login">Đăng nhập</a></li>														
+				@endif														
+				</ul>														
+			</div>														
+																								
 			<div class="pull-right auto-width-right">							
 				<ul class="top-details menu-beta l-inline">						
 					<li><a href="#"><i class="fa fa-user"></i>Tài khoản</a></li>					

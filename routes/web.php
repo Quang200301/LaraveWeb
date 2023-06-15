@@ -1,10 +1,11 @@
 <?php
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Notifications\Notifiable
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,5 +71,35 @@ Route::get('/apicrud.data',[APIController::class, 'getDataFromAPI']);
 Route::delete('/apicrud.data/{id}', [APIController::class, 'destroy'])->name('apicrud.data.delete');
 
 // thêm API data
-Route::get('/apicrud.data', [APIController::class, 'getDataFromAPI'])->name('apicrud.data.getDataFromAPI');
-Route::post('/apicrud.data.add', [APIController::class, 'add']);
+// Route::get('/apicrud.data', [APIController::class, 'getDataFromAPI'])->name('apicrud.data.getDataFromAPI');
+// Route::post('/apicrud.data.add', [APIController::class, 'add']);
+
+Route::get('/apicrud.addadd',[APIController::class, 'getadd']);
+Route::post('/add', [APIController::class, 'add']);
+
+
+
+// ----------------------------- login----------------------------------------
+Route::get('/register', function () {			
+	return view('users.register');			
+	});	
+
+Route::post('/register',[UserController::class,'Register']);
+
+Route::get('/login', function () {						
+	return view('users.login');						
+	});						
+Route::post('/login',[UserController::class,'Login']);
+Route::get('/logout',[UserController::class,'Logout']);
+
+
+
+Route::get('add-to-cart/{id}', [PageController::class, 'getAddToCart'])->name('themgiohang');												
+Route::get('del-cart/{id}', [PageController::class, 'getDelItemCart'])->name('xoagiohang');												
+
+
+
+
+
+	// -----------PDF-----------------------------------------//
+	Route::post('/upload-pdf', 'PDFController@uploadPDF');

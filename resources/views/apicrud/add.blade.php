@@ -1,6 +1,4 @@
-{{-- 
-
-<form action="{{ route('apicrud.data.add') }}" method="POST" enctype="multipart/form-data">
+{{-- <form action="/apicrud.data.add" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="name">Tên:</label>
@@ -15,4 +13,9 @@
         <input type="file" name="avatar" id="avatar" class="form-control-file">
     </div>
     <button type="submit" class="btn btn-primary">Thêm</button>
-</form> --}}
+    </form> --}}
+    <p>xin xgai <p>
+        <p>xin xgai <p>
+            <p>xin xgai <p>
+                <p>xin xgai <p>
+

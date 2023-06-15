@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 
 class APIController extends Controller
 {
+	
     public function getProducts(){
         $products=products::all();
         return response()->json($products);
@@ -116,11 +117,18 @@ public function add(Request $request)
 
 	$data->name= $request->name;
 	$data->price= $request->price;
-	$data->avatar= $request->avatar;
-
+	// $data->avatar= $request->avatar;
+	
+	if ($request->hasFile('avatar')) {							
+	$file = $request->file('avatar');							
+	$fileName = $file->getClientOriginalName();							
+								
+	$file->move(public_path('images'), $fileName);	
+	
+	$data->avatar = $fileName;
 
     $response = Http::post('https://645e542e8d08100293fcd90e.mockapi.io/sinhvien', $data);
-
+	
     if ($response->successful()) {
 		// $request->session()->flash('add_success', 'Thêm thành công');
         // Lưu flash message vào session
@@ -133,5 +141,7 @@ public function add(Request $request)
 		return response()->json(['message' => 'Không thể thêm dữ liệu'], (string) $response->status());
 
     }
+	};
+	
 }
 }

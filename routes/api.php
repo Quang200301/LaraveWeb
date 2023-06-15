@@ -2,7 +2,8 @@
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\APIController;				
+use App\Http\Controllers\APIController;	
+use App\Http\Controllers\LazadaController;			
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,7 +33,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 										
 	// create api									
 	Route::get('/get-product',[APIController::class,'getProducts']);									
-										
+	Route::get('/get-lazada',[LazadaController::class,'getLazada']);			
 										
 										
 	Route::get('/get-product/{id}', [APIController::class,'getOneProduct']);									
